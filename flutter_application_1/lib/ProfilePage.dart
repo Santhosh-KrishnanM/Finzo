@@ -16,7 +16,7 @@ class ProfilePage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Card(
@@ -29,32 +29,32 @@ class ProfilePage extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 20),
-                    const Text(
+                  children: const [
+                    SizedBox(height: 20),
+                    Text(
                       'Profile',
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20),
                     Text(
                       'Name: $userName',
-                      style: const TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18),
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10),
                     Text(
                       'Email: $userEmail',
-                      style: const TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18),
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10),
                     Text(
                       'Phone: $userPhone',
-                      style: const TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18),
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10),
                     Text(
                       'Address: $userAddress',
-                      style: const TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 18),
                     ),
                   ],
                 ),
@@ -73,30 +73,30 @@ class ProfilePage extends StatelessWidget {
                       title: const Text('Edit Profile'),
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
-                        children: [
+                        children: const [
                           TextField(
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               labelText: 'Name',
                               border: OutlineInputBorder(),
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10),
                           TextField(
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               labelText: 'Email',
                               border: OutlineInputBorder(),
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10),
                           TextField(
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               labelText: 'Phone',
                               border: OutlineInputBorder(),
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10),
                           TextField(
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               labelText: 'Address',
                               border: OutlineInputBorder(),
                             ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatefulWidget {
+  const AuthPage({super.key});
+
   @override
   _AuthPageState createState() => _AuthPageState();
 }
@@ -30,7 +32,7 @@ class _AuthPageState extends State<AuthPage> {
 class LoginPage extends StatelessWidget {
   final Function onToggle;
 
-  LoginPage({required this.onToggle});
+  LoginPage({super.key, required this.onToggle});
 
   final _formKey = GlobalKey<FormState>();
   String _name = '';
@@ -102,7 +104,7 @@ class LoginPage extends StatelessWidget {
 class SignUpPage extends StatelessWidget {
   final Function onToggle;
 
-  SignUpPage({required this.onToggle});
+  SignUpPage({super.key, required this.onToggle});
 
   final _formKey = GlobalKey<FormState>();
   String _name = '';
@@ -171,6 +173,8 @@ class SignUpPage extends StatelessWidget {
 }
 
 class DashboardPage extends StatelessWidget {
+  const DashboardPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

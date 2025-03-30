@@ -171,45 +171,45 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
-        children: [
-          const Text(
+        children: const [
+          Text(
             '',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 20),
-          const Text(
+          SizedBox(height: 20),
+          Text(
             'Financial Overview:',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10),
           Card(
             elevation: 2,
             child: ListTile(
-              title: const Text('Income'),
-              trailing: const Text('\$5000'), // Example static value
+              title: Text('Income'),
+              trailing: Text('\$5000'), // Example static value
             ),
           ),
-          const SizedBox(height: 5),
+          SizedBox(height: 5),
           Card(
             elevation: 2,
             child: ListTile(
-              title: const Text('Expenses'),
-              trailing: const Text('\$3000'), // Example static value
+              title: Text('Expenses'),
+              trailing: Text('\$3000'), // Example static value
             ),
           ),
-          const SizedBox(height: 5),
+          SizedBox(height: 5),
           Card(
             elevation: 2,
             child: ListTile(
-              title: const Text('Net Balance'),
-              trailing: const Text('\$2000'), // Example static value
+              title: Text('Net Balance'),
+              trailing: Text('\$2000'), // Example static value
             ),
           ),
         ],
