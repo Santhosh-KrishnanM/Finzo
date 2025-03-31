@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/CalculatorPage.dart';
-import 'package:flutter_application_1/ProfilePage.dart';
-import 'package:flutter_application_1/SettingsPage.dart';
+import 'CalculatorPage.dart';
+import 'ProfilePage.dart';
+import 'SettingsPage.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -28,191 +26,58 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: _isDarkMode ? ThemeData.dark() : ThemeData.light(),
-      home: MyHomePage(onToggleTheme: _toggleTheme),
+      home: HomePage(isDarkMode: _isDarkMode, toggleTheme: _toggleTheme),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  final Function(bool) onToggleTheme;
+class HomePage extends StatefulWidget {
+  final bool isDarkMode;
+  final Function(bool) toggleTheme;
 
-  const MyHomePage({super.key, required this.onToggleTheme});
+  const HomePage(
+      {super.key, required this.isDarkMode, required this.toggleTheme});
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _currentIndex = 0;
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
 
-  final List<Widget> _children = [
-    const HomeScreen(),
-    const ProfilePage(),
-    SettingsPage(
-      isDarkMode: false,
-      toggleTheme: (bool) {},
-    ),
-    const CalculatorPage(),
-  ];
+  final List<Widget> _pages = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _pages.addAll([
+      const CalculatorPage(),
+      const ProfilePage(),
+      SettingsPage(
+          isDarkMode: widget.isDarkMode, toggleTheme: widget.toggleTheme),
+    ]);
+  }
 
   void _onItemTapped(int index) {
     setState(() {
-      _currentIndex = index;
+      _selectedIndex = index;
     });
-
-    switch (index) {
-      case 0:
-        print('Home');
-        break;
-      case 1:
-        print('Profile');
-        break;
-      case 2:
-        print('Settings');
-        break;
-      case 3:
-        print('Calculator');
-        break;
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Finzo'),
-        backgroundColor: Colors.blue,
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-          ),
-        ),
-      ),
-      drawer: Drawer(
-        child: Column(
-          children: [
-            const UserAccountsDrawerHeader(
-              accountName: Text('Nishanth'),
-              accountEmail: Text('Nishu2005@gmail.com'),
-            ),
-            ListTile(
-              title: const Text('Home'),
-              leading: const Icon(Icons.home),
-              onTap: () {
-                setState(() {
-                  _currentIndex = 0; // Change to Home
-                });
-                Navigator.pop(context); // Close the drawer
-              },
-            ),
-            ListTile(
-              title: const Text('Profile'),
-              leading: const Icon(Icons.person),
-              onTap: () {
-                setState(() {
-                  _currentIndex = 1;
-                });
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Settings'),
-              leading: const Icon(Icons.settings),
-              onTap: () {
-                setState(() {
-                  _currentIndex = 2; // Change to Settings
-                });
-                Navigator.pop(context); // Close the drawer
-              },
-            ),
-            ListTile(
-              title: const Text('Calculator'),
-              leading: const Icon(Icons.calculate),
-              onTap: () {
-                setState(() {
-                  _currentIndex = 3;
-                });
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
-      body: _children[_currentIndex],
+      body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
+              icon: Icon(Icons.calculate), label: 'Calculator'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_2),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings_applications_rounded),
-            label: 'Settings',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calculate_outlined),
-            label: 'Calculator',
-          ),
+              icon: Icon(Icons.settings), label: 'Settings'),
         ],
-        currentIndex: _currentIndex,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
+        currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-      ),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: const [
-          Text(
-            '',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 20),
-          Text(
-            'Financial Overview:',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 10),
-          Card(
-            elevation: 2,
-            child: ListTile(
-              title: Text('Income'),
-              trailing: Text('\$5000'), // Example static value
-            ),
-          ),
-          SizedBox(height: 5),
-          Card(
-            elevation: 2,
-            child: ListTile(
-              title: Text('Expenses'),
-              trailing: Text('\$3000'), // Example static value
-            ),
-          ),
-          SizedBox(height: 5),
-          Card(
-            elevation: 2,
-            child: ListTile(
-              title: Text('Net Balance'),
-              trailing: Text('\$2000'), // Example static value
-            ),
-          ),
-        ],
       ),
     );
   }

@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  supabase_flutter: ^2.8.4
   syncfusion_flutter_charts: ^28.2.9
   
 dev_dependencies:

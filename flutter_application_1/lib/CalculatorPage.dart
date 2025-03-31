@@ -54,15 +54,13 @@ class _CalculatorPageState extends State<CalculatorPage> {
   Widget buildButton(String buttonText) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.all(8.0), // Add padding around buttons
+        padding: const EdgeInsets.all(8.0),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(
-                vertical: 20.0), // Increase vertical padding
-            textStyle: const TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold), // Larger text size
-            minimumSize: const Size(88, 88), // Minimum button size
+            padding: const EdgeInsets.symmetric(vertical: 20.0),
+            textStyle:
+                const TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+            minimumSize: const Size(88, 88),
           ),
           onPressed: () => _onButtonPressed(buttonText),
           child: Text(buttonText),
@@ -74,31 +72,25 @@ class _CalculatorPageState extends State<CalculatorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Calculator'),
-      ),
+      appBar: AppBar(title: const Text('Calculator')),
       body: Column(
         children: [
           Container(
             padding:
                 const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12.0),
             alignment: Alignment.centerRight,
-            child: Text(
-              _display,
-              style:
-                  const TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold),
-            ),
+            child: Text(_display,
+                style: const TextStyle(
+                    fontSize: 48.0, fontWeight: FontWeight.bold)),
           ),
-          const Expanded(
-            child: Divider(), // Add some separation between display and buttons
-          ),
+          const Expanded(child: Divider()),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               buildButton("7"),
               buildButton("8"),
               buildButton("9"),
-              buildButton("➗"),
+              buildButton("➗")
             ],
           ),
           Row(
@@ -107,7 +99,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
               buildButton("4"),
               buildButton("5"),
               buildButton("6"),
-              buildButton("✖"),
+              buildButton("✖")
             ],
           ),
           Row(
@@ -116,7 +108,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
               buildButton("1"),
               buildButton("2"),
               buildButton("3"),
-              buildButton("-"),
+              buildButton("-")
             ],
           ),
           Row(
@@ -125,7 +117,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
               buildButton("C"),
               buildButton("0"),
               buildButton("="),
-              buildButton("+"),
+              buildButton("+")
             ],
           ),
         ],

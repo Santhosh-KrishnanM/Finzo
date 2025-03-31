@@ -10,17 +10,12 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings'),
-      ),
+      appBar: AppBar(title: const Text('Settings')),
       body: ListView(
         children: <Widget>[
           ListTile(
             title: const Text('Dark Mode'),
-            trailing: Switch(
-              value: isDarkMode,
-              onChanged: toggleTheme,
-            ),
+            trailing: Switch(value: isDarkMode, onChanged: toggleTheme),
           ),
           const Divider(),
           ListTile(
@@ -33,26 +28,14 @@ class SettingsPage extends StatelessWidget {
                     title: const Text('About'),
                     content:
                         const Text('This is a sample Flutter application.'),
-                    actions: <Widget>[
+                    actions: [
                       TextButton(
-                        child: const Text('Close'),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
+                          child: const Text('Close'),
+                          onPressed: () => Navigator.pop(context))
                     ],
                   );
                 },
               );
-            },
-          ),
-          const Divider(),
-          ListTile(
-            title: const Text('Notifications'),
-            trailing: const Icon(Icons.arrow_forward),
-            onTap: () {
-              // Here, you could navigate to another settings screen for notifications
-              print('Notifications settings tapped');
             },
           ),
         ],
