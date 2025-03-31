@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: must_be_immutable
+
+/*import 'package:flutter/material.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -190,3 +192,4 @@ class DashboardPage extends StatelessWidget {
     );
   }
 }
+*/

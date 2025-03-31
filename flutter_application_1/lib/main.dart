@@ -1,24 +1,38 @@
 import 'package:flutter/material.dart';
-import 'CalculatorPage.dart';
-import 'ProfilePage.dart';
-import 'SettingsPage.dart';
+import 'package:flutter_application_1/CalculatorPage.dart';
+import 'package:flutter_application_1/ProfilePage.dart';
+import 'package:flutter_application_1/SettingsPage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  bool isDarkMode = await getSavedTheme();
+  runApp(MyApp(isDarkMode: isDarkMode));
 }
 
 class MyApp extends StatefulWidget {
+  final bool isDarkMode;
+  const MyApp({super.key, required this.isDarkMode});
+
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _isDarkMode = false;
+  late bool _isDarkMode;
 
-  void _toggleTheme(bool value) {
+  @override
+  void initState() {
+    super.initState();
+    _isDarkMode = widget.isDarkMode;
+  }
+
+  void _toggleTheme(bool value) async {
     setState(() {
       _isDarkMode = value;
     });
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isDarkMode', value);
   }
 
   @override
@@ -29,6 +43,11 @@ class _MyAppState extends State<MyApp> {
       home: HomePage(isDarkMode: _isDarkMode, toggleTheme: _toggleTheme),
     );
   }
+}
+
+Future<bool> getSavedTheme() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getBool('isDarkMode') ?? false;
 }
 
 class HomePage extends StatefulWidget {
@@ -45,17 +64,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = [];
+  late List<Widget> _pages;
 
   @override
   void initState() {
     super.initState();
-    _pages.addAll([
+    _pages = [
       const CalculatorPage(),
       const ProfilePage(),
       SettingsPage(
           isDarkMode: widget.isDarkMode, toggleTheme: widget.toggleTheme),
-    ]);
+    ];
   }
 
   void _onItemTapped(int index) {

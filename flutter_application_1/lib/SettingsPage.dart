@@ -15,7 +15,10 @@ class SettingsPage extends StatelessWidget {
         children: <Widget>[
           ListTile(
             title: const Text('Dark Mode'),
-            trailing: Switch(value: isDarkMode, onChanged: toggleTheme),
+            trailing: Switch(
+              value: isDarkMode,
+              onChanged: toggleTheme, // Toggle dark mode dynamically
+            ),
           ),
           const Divider(),
           ListTile(
@@ -30,8 +33,9 @@ class SettingsPage extends StatelessWidget {
                         const Text('This is a sample Flutter application.'),
                     actions: [
                       TextButton(
-                          child: const Text('Close'),
-                          onPressed: () => Navigator.pop(context))
+                        child: const Text('Close'),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
                     ],
                   );
                 },
