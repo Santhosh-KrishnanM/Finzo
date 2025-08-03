@@ -29,13 +29,6 @@ To download and execute the latest version of MyFinance Management, click the bu
 
 [![Download Here](https://img.shields.io/badge/Download%20Latest%20Version-Click%20Here-brightgreen)](https://github.com/ghost33333333/MyFinance_Management/releases)
 
-## Screenshots 📷
-
-Here are some screenshots from MyFinance Management in action:
-
-![Screenshot 1](https://via.placeholder.com/600x400)
-![Screenshot 2](https://via.placeholder.com/600x400)
-![Screenshot 3](https://via.placeholder.com/600x400)
 
 ## How to Use 📝
 
